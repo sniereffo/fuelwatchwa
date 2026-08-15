@@ -1,6 +1,6 @@
 # FuelWatch WA
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/custom-components/hacs)
+[![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
 
 Monitor Western Australian fuel prices from FuelWatch in Home Assistant.
 
@@ -33,7 +33,7 @@ Monitor Western Australian fuel prices from FuelWatch in Home Assistant.
 2. Go to Integrations
 3. Click the three dots (⋮) in the top right
 4. Select "Custom repositories"
-5. Add `https://github.com/drosair/fuelwatchwa`
+5. Add `https://github.com/sniereffo/fuelwatchwa`
 6. Category: Integration
 7. Click "Install"
 8. Restart Home Assistant
@@ -95,11 +95,12 @@ Use Home Assistant Recorder or InfluxDB to track price trends over time.
 
 ## Support
 
-- [Documentation](https://github.com/drosair/fuelwatchwa)
-- [Report Issues](https://github.com/drosair/fuelwatchwa/issues)
+- [Documentation](https://github.com/sniereffo/fuelwatchwa)
+- [Report Issues](https://github.com/sniereffo/fuelwatchwa/issues)
 
 ## Credits
 
-Built on the [fuelwatcher](https://github.com/danielssonn/fuelwatcher) Python library.
+Built on the [fuelwatcher](https://github.com/danielmichaels/fuelwatcher) Python library by Daniel Michaels.
+Originally created by [Damian Rosair (@drosair)](https://github.com/drosair/fuelwatchwa).
 
 Data sourced from [FuelWatch WA Government](https://www.fuelwatch.wa.gov.au/).

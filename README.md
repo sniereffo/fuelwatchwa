@@ -1,6 +1,6 @@
 # FuelWatch WA - Home Assistant Integration
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/custom-components/hacs)
+[![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
 
 A Home Assistant custom integration for fetching fuel prices in Western Australia from [FuelWatch](https://www.fuelwatch.wa.gov.au/).
 
@@ -30,6 +30,20 @@ The integration supports all official FuelWatch fuel types:
 
 ## Installation
 
+### HACS (Recommended)
+
+This integration is distributed as a HACS custom repository:
+
+1. Open HACS in Home Assistant
+2. Click the three dots (⋮) in the top right and select **Custom repositories**
+3. Add `https://github.com/sniereffo/fuelwatchwa` with type **Integration**
+4. Search for "FuelWatch WA" in HACS and install it
+5. Restart Home Assistant
+6. Go to **Settings** → **Devices & Services** → **Add Integration**
+7. Search for "FuelWatch WA" and follow the setup wizard
+
+Updates are published as GitHub releases and will appear in Home Assistant's update list automatically.
+
 ### Manual Installation
 
 1. Download or clone this repository
@@ -37,17 +51,6 @@ The integration supports all official FuelWatch fuel types:
 3. Restart Home Assistant
 4. Go to **Settings** → **Devices & Services** → **Add Integration**
 5. Search for "FuelWatch WA" and follow the setup wizard
-
-### HACS Installation (Coming Soon)
-
-Once published to HACS:
-
-1. Open HACS
-2. Go to Integrations
-3. Click the three dots in the top right
-4. Select "Custom repositories"
-5. Add `https://github.com/drosair/fuelwatchwa` as an integration
-6. Install "FuelWatch WA"
 
 ## Configuration
 
@@ -202,48 +205,10 @@ influxdb:
 
 See `examples/dashboards/fuelwatchwa-dashboard.yaml` for a complete dashboard example.
 
-## Current Status
+## Known Limitations
 
-**Version**: 0.2.0-alpha1 (Phase 1 - Manual Testing)
-
-### ✅ Completed
-- Async-safe API client using executor jobs
-- Config flow with stable string parsing
-- Correct FuelWatch RSS product mappings
-- Multi-fuel-type coordinator architecture
-- Summary and cheapest sensors
-- Graceful handling of empty/missing data
-
-### 🧪 Testing Phase
-- Manual installation testing
-- Sensor state verification
-- Multi-location support
-- Update interval tuning (currently 30 minutes)
-
-### ⚠️ Known Limitations
 - Single location per integration instance (add multiple instances for multiple locations)
-- No region/grouped area support yet
-- No historical CSV import/backfill
-
-## Roadmap
-
-### Phase 2 - Polish & Testing
-- [ ] Additional dashboard examples
-- [ ] Unit tests for API and coordinator
-- [ ] Integration tests with mock FuelWatch data
-- [ ] Error handling improvements
-
-### Phase 3 - Enhanced Features
-- [ ] Historical CSV import/backfill utility
-- [ ] Grouped area support (e.g., "All Perth Metro")
-- [ ] Station-level sensors (optional)
-- [ ] Custom scan intervals per fuel type
-
-### Phase 4 - Advanced UX
-- [ ] CarPlay-friendly navigation integration
-- [ ] Nearest station routing
-- [ ] Price alert automations
-- [ ] HACS certification
+- No region/grouped area support
 
 ## Troubleshooting
 
@@ -275,7 +240,8 @@ MIT License - see LICENSE file for details
 
 ## Credits
 
-- Built on the [fuelwatcher](https://github.com/danielssonn/fuelwatcher) Python library
+- Originally created by [Damian Rosair (@drosair)](https://github.com/drosair/fuelwatchwa) — this is a maintained fork
+- Built on the [fuelwatcher](https://github.com/danielmichaels/fuelwatcher) Python library by Daniel Michaels
 - Data sourced from [FuelWatch WA Government](https://www.fuelwatch.wa.gov.au/)
 
 ## Disclaimer
