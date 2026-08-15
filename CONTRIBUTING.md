@@ -14,7 +14,7 @@ Thank you for considering contributing to this project!
 
 ### Reporting Bugs
 
-1. Check if the bug has already been reported in [Issues](https://github.com/drosair/fuelwatchwa/issues)
+1. Check if the bug has already been reported in [Issues](https://github.com/sniereffo/fuelwatchwa/issues)
 2. If not, create a new issue with:
    - Clear description of the problem
    - Steps to reproduce
@@ -24,7 +24,7 @@ Thank you for considering contributing to this project!
 
 ### Suggesting Features
 
-1. Check existing [Issues](https://github.com/drosair/fuelwatchwa/issues) for similar suggestions
+1. Check existing [Issues](https://github.com/sniereffo/fuelwatchwa/issues) for similar suggestions
 2. Create a new issue with:
    - Clear use case description
    - How it aligns with the roadmap (see `docs/README.md`)
