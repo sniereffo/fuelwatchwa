@@ -146,6 +146,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   entries via Settings → Devices & Services → Configure.
 - Casuarina added to the common suburbs dropdown.
 
+## [0.6.1] - 2026-08-15
+
+### Added
+- Brand images (icon and logo derived from the FuelWatch logo, text removed
+  from the icon) shipped inside the integration at
+  `custom_components/fuelwatchwa/brand/`. Home Assistant 2026.3+ serves these
+  locally, so the integration shows its own icon in Settings → Devices &
+  Services without a home-assistant/brands entry.
+
 ## [Unreleased]
 
 ### Planned
