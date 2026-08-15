@@ -213,7 +213,7 @@ async def _get_or_create_metadata(
         "name": entity_id.split(".")[-1].replace("_", " ").title(),
         "source": source,
         "statistic_id": entity_id,
-        "unit_of_measurement": "AUD/L",
+        "unit_of_measurement": "¢/L",
     }
     
     await get_instance(hass).async_add_executor_job(

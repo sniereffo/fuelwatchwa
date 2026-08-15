@@ -62,14 +62,14 @@ For each fuel type, the integration creates **8 sensors** grouped under a logica
 **Example device:** "Caversham Diesel" with all 8 sensors grouped together.
 
 ### Summary Statistics
-- `minimum_price` - Lowest price (⬇️ AUD/L)
-- `average_price` - Average price (📈 AUD/L)
-- `maximum_price` - Highest price (⬆️ AUD/L)
-- `price_spread` - Min/max difference (Δ AUD/L)
+- `minimum_price` - Lowest price (⬇️ ¢/L)
+- `average_price` - Average price (📈 ¢/L)
+- `maximum_price` - Highest price (⬆️ ¢/L)
+- `price_spread` - Min/max difference (Δ ¢/L)
 - `station_count` - Number of stations (⛽)
 
 ### Cheapest Station
-- `cheapest_price` - Best price (💲 AUD/L)
+- `cheapest_price` - Best price (💲 ¢/L)
 - `cheapest_brand` - Station brand (⛽)
 - `cheapest_address` - Station address (📍)
 

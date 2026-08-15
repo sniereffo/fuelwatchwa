@@ -173,10 +173,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Price sensors declared `AUD/L` while FuelWatch publishes prices in cents
+  per litre — the unit is now `¢/L` on all price and analytics sensors and
+  in the CSV-import statistics metadata (#1). Values are unchanged; after
+  updating, accept the one-time unit correction for existing long-term
+  statistics in Developer Tools → Statistics.
+
 ### Planned
-- CSV import/backfill utility (Phase 4)
-- Location intelligence and GPS integration (Phase 5)
-- CarPlay/mobile experience (Phase 6)
-- Region and group support (Phase 7)
+- Location intelligence and GPS integration
+- Region and group support
 
 [0.2.0-alpha1]: https://github.com/drosair/fuelwatchwa/releases/tag/v0.2.0-alpha1

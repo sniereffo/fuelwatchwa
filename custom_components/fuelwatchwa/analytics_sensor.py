@@ -158,7 +158,7 @@ class FuelAnalyticsSensor(BaseAnalyticsSensor):
             self._attr_name = "30-Day Average Price"
             self._attr_icon = "mdi:chart-bell-curve"
         
-        self._attr_native_unit_of_measurement = "AUD/L"
+        self._attr_native_unit_of_measurement = "¢/L"
         self._attr_state_class = SensorStateClass.MEASUREMENT
     
     @property
@@ -234,7 +234,7 @@ class FuelVolatilitySensor(BaseAnalyticsSensor):
         super().__init__(hass, coordinator, fuel_type, source_entity_id, sensor_type, days)
         self._attr_name = "Price Volatility"
         self._attr_icon = "mdi:chart-scatter-plot"
-        self._attr_native_unit_of_measurement = "AUD/L"
+        self._attr_native_unit_of_measurement = "¢/L"
         self._attr_state_class = SensorStateClass.MEASUREMENT
     
     @property

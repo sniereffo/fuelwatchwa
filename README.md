@@ -89,14 +89,14 @@ All sensors for a fuel type are grouped under a device named:
 **Example:** "Caversham Diesel" device contains all 13 diesel sensors.
 
 ### Summary Statistics
-- `minimum_price` - Lowest price in area (icon: ⬇️, unit: AUD/L)
-- `average_price` - Average price (icon: 📈, unit: AUD/L)
-- `maximum_price` - Highest price (icon: ⬆️, unit: AUD/L)
-- `price_spread` - Difference between min and max (icon: Δ, unit: AUD/L)
+- `minimum_price` - Lowest price in area (icon: ⬇️, unit: ¢/L)
+- `average_price` - Average price (icon: 📈, unit: ¢/L)
+- `maximum_price` - Highest price (icon: ⬆️, unit: ¢/L)
+- `price_spread` - Difference between min and max (icon: Δ, unit: ¢/L)
 - `station_count` - Number of stations reporting (icon: ⛽, unit: stations)
 
 ### Cheapest Station
-- `cheapest_price` - Cheapest price (icon: 💲, unit: AUD/L)
+- `cheapest_price` - Cheapest price (icon: 💲, unit: ¢/L)
 - `cheapest_brand` - Brand name (icon: ⛽)
 - `cheapest_address` - Station address (icon: 📍)
 
@@ -104,13 +104,13 @@ All sensors for a fuel type are grouped under a device named:
 
 Each fuel type also includes **5 analytics sensors** that provide historical trend analysis:
 
-- **7-Day Average Price** - Rolling 7-day mean price (icon: 📊, unit: AUD/L)
+- **7-Day Average Price** - Rolling 7-day mean price (icon: 📊, unit: ¢/L)
   - Attributes: `minimum`, `maximum`, `data_points`, `period_days`
-- **30-Day Average Price** - Monthly trend tracking (icon: 📈, unit: AUD/L)
+- **30-Day Average Price** - Monthly trend tracking (icon: 📈, unit: ¢/L)
   - Attributes: `minimum`, `maximum`, `data_points`, `period_days`
 - **Price Trend** - Direction indicator: `increasing`, `decreasing`, or `stable` (icon: 📈/📉/➡️)
   - Attributes: `price_change`, `percent_change`, `period_days`
-- **Price Volatility** - Standard deviation measure (icon: 📊, unit: AUD/L)
+- **Price Volatility** - Standard deviation measure (icon: 📊, unit: ¢/L)
   - Attributes: `stability` (very_stable/stable/moderate/volatile), `data_points`
 - **Weekly Change %** - Percentage price change over 7 days (icon: %, unit: %)
   - Attributes: `price_change`, `trend`, `period_days`
@@ -181,7 +181,7 @@ recorder:
 
 ### Energy Dashboard & Statistics
 
-Price sensors use `device_class: monetary` and are compatible with:
+Price sensors use `state_class: measurement` (values in ¢/L, as FuelWatch publishes them) and are compatible with:
 - Long-term statistics (automatic with Recorder)
 - InfluxDB integration
 - History graphs
