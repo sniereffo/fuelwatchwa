@@ -1,13 +1,16 @@
 """API client helpers for the FuelWatch WA integration."""
 from __future__ import annotations
 
+import logging
 from datetime import UTC, datetime
 from statistics import mean
 
 from homeassistant.core import HomeAssistant
 from fuelwatcher import FuelWatch
 
-from .const import FUEL_TYPE_OPTIONS
+from .const import DEFAULT_SURROUNDING, FUEL_TYPE_OPTIONS
+
+_LOGGER = logging.getLogger(__name__)
 
 
 class FuelWatchAPI:
@@ -16,24 +19,34 @@ class FuelWatchAPI:
     def __init__(self, hass: HomeAssistant) -> None:
         self.hass = hass
 
-    def _fetch_sync(self, location: str, fuel_type: str, day: str):
+    def _fetch_sync(self, location: str, fuel_type: str, day: str, surrounding: bool):
         """Run the blocking FuelWatch request synchronously."""
         product_id = FUEL_TYPE_OPTIONS[fuel_type]
         client = FuelWatch()
-        client.query(suburb=location, product=product_id, day=day)
-        return client.get_xml
+        client.query(
+            suburb=location, product=product_id, day=day, surrounding=surrounding
+        )
+        return client.xml
 
-    async def fetch(self, location: str, fuel_type: str) -> dict | None:
+    async def fetch(
+        self,
+        location: str,
+        fuel_type: str,
+        surrounding: bool = DEFAULT_SURROUNDING,
+    ) -> dict | None:
         """Fetch FuelWatch data for both today and tomorrow, return summary statistics."""
         # Fetch both today and tomorrow data
         try:
             today_data = await self.hass.async_add_executor_job(
-                self._fetch_sync, location, fuel_type, "today"
+                self._fetch_sync, location, fuel_type, "today", surrounding
             )
             tomorrow_data = await self.hass.async_add_executor_job(
-                self._fetch_sync, location, fuel_type, "tomorrow"
+                self._fetch_sync, location, fuel_type, "tomorrow", surrounding
             )
-        except Exception:
+        except Exception as err:
+            _LOGGER.warning(
+                "FuelWatch query failed for %s / %s: %s", location, fuel_type, err
+            )
             return None
 
         if not today_data:

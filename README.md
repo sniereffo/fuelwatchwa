@@ -55,6 +55,7 @@ During setup, you'll be asked to provide:
 
 - **Suburb**: Select from dropdown or enter custom location (e.g., "Perth", "Fremantle")
 - **Fuel Types**: Multi-select dropdown with friendly names (e.g., Diesel, Premium 98)
+- **Include surrounding suburbs**: On by default, prices cover stations in surrounding suburbs too. Turn off to only include stations physically in the selected suburb (useful to pin a single station, e.g. Costco Casuarina). Can be changed later on existing entries via **Configure**.
 
 The integration automatically fetches **both today's and tomorrow's prices** in each update.
 

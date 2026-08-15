@@ -124,6 +124,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Bug Fixes
 - Fixed analytics sensor Recorder state check
 
+## [0.6.0] - 2026-08-15
+
+### Fixed
+- **Custom suburbs failing with "No FuelWatch data returned"** — upgraded
+  `fuelwatcher` 0.2.2 → 1.0.0. The old version's hardcoded suburb whitelist
+  predates newer suburbs (e.g. Casuarina), so queries for them raised
+  `Invalid Suburb` before FuelWatch was ever contacted.
+- API errors are now logged with the real cause instead of being silently
+  swallowed and reported as "no data returned".
+- Added missing `async_unload_entry` so config entries can be unloaded,
+  reloaded, and removed cleanly.
+- Replaced deprecated `get_xml` with the `xml` property (removes a
+  DeprecationWarning in the HA log).
+
+### Added
+- **"Include surrounding suburbs" option** (per instance, on by default —
+  matching previous behaviour). Turn it off to only show stations physically
+  in the selected suburb, e.g. to pin a single station like Costco Casuarina.
+- Options flow: the surrounding-suburbs setting can be changed on existing
+  entries via Settings → Devices & Services → Configure.
+- Casuarina added to the common suburbs dropdown.
+
 ## [Unreleased]
 
 ### Planned

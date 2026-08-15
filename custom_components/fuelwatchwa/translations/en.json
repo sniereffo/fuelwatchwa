@@ -6,17 +6,32 @@
         "description": "Configure FuelWatch integration for Western Australia",
         "data": {
           "location": "Suburb",
-          "fuel_types": "Fuel Types"
+          "fuel_types": "Fuel Types",
+          "surrounding": "Include surrounding suburbs"
         },
         "data_description": {
           "location": "Select your suburb or enter a custom location",
-          "fuel_types": "Select one or more fuel types to monitor (both today and tomorrow prices will be fetched automatically)"
+          "fuel_types": "Select one or more fuel types to monitor (both today and tomorrow prices will be fetched automatically)",
+          "surrounding": "When on, prices include stations in surrounding suburbs. Turn off to only show stations physically in the selected suburb."
         }
       }
     },
     "error": {
       "required": "This field is required",
       "invalid_selection": "Invalid fuel type selection"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "FuelWatch WA Options",
+        "data": {
+          "surrounding": "Include surrounding suburbs"
+        },
+        "data_description": {
+          "surrounding": "When on, prices include stations in surrounding suburbs. Turn off to only show stations physically in the selected suburb."
+        }
+      }
     }
   }
 }
