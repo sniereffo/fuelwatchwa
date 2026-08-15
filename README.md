@@ -86,7 +86,7 @@ All sensors for a fuel type are grouped under a device named:
 {Location} {Fuel Type}
 ```
 
-**Example:** "Caversham Diesel" device contains all 8 diesel sensors.
+**Example:** "Caversham Diesel" device contains all 13 diesel sensors.
 
 ### Summary Statistics
 - `minimum_price` - Lowest price in area (icon: ⬇️, unit: AUD/L)
@@ -100,7 +100,7 @@ All sensors for a fuel type are grouped under a device named:
 - `cheapest_brand` - Brand name (icon: ⛽)
 - `cheapest_address` - Station address (icon: 📍)
 
-### Analytics Sensors (Phase 3)
+### Analytics Sensors
 
 Each fuel type also includes **5 analytics sensors** that provide historical trend analysis:
 
@@ -132,9 +132,9 @@ All sensors include these attributes:
 
 ## Historical Data
 
-### Phase 4 - CSV Import & Backfill
+### CSV Import & Backfill
 
-Import years of historical FuelWatch data to power your analytics sensors!
+Import years of historical FuelWatch data to power your analytics sensors.
 
 **1. Download Historical Data**
 
@@ -213,18 +213,14 @@ See `examples/dashboards/fuelwatchwa-dashboard.yaml` for a complete dashboard ex
 ## Troubleshooting
 
 ### Integration shows "Unavailable"
-- Check that the suburb/location name is recognized by FuelWatch
-- Verify fuel type names match exactly (case-sensitive)
-- Check Home Assistant logs for API errors
+- Check that the suburb/location name is spelled the way FuelWatch knows it
+- Check Home Assistant logs for the underlying API error
 
 ### No data returned
+- If the suburb has no petrol station of its own, enable **Include surrounding suburbs** (Settings → Devices & Services → Configure)
 - Some locations may not have all fuel types available
-- Tomorrow's data may not be published until afternoon
-- FuelWatch API may be temporarily unavailable
-
-### Config flow returns 500 error
-- If you see this, ensure you're using the latest version
-- The old `cv_multi_select` helper has been removed
+- Tomorrow's data is not published until about 2:30pm
+- FuelWatch may be temporarily unavailable
 
 ## Contributing
 
@@ -241,7 +237,7 @@ MIT License - see LICENSE file for details
 ## Credits
 
 - Originally created by [Damian Rosair (@drosair)](https://github.com/drosair/fuelwatchwa) — this is a maintained fork
-- Built on the [fuelwatcher](https://github.com/danielmichaels/fuelwatcher) Python library by Daniel Michaels
+- Earlier versions were built on the [fuelwatcher](https://github.com/danielmichaels/fuelwatcher) Python library by Daniel Michaels (since v0.7.0 the integration queries the FuelWatch feed directly)
 - Data sourced from [FuelWatch WA Government](https://www.fuelwatch.wa.gov.au/)
 
 ## Disclaimer
