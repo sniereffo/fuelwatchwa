@@ -4,29 +4,69 @@ from __future__ import annotations
 import logging
 from datetime import UTC, datetime
 from statistics import mean
+from xml.etree import ElementTree
+
+import aiohttp
 
 from homeassistant.core import HomeAssistant
-from fuelwatcher import FuelWatch
+from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .const import DEFAULT_SURROUNDING, FUEL_TYPE_OPTIONS
 
 _LOGGER = logging.getLogger(__name__)
 
+RSS_URL = "https://www.fuelwatch.wa.gov.au/fuelwatch/fuelWatchRSS"
+# FuelWatch rejects default python HTTP client user agents
+USER_AGENT = "Mozilla/5.0 (compatible; HomeAssistant-FuelWatchWA)"
+REQUEST_TIMEOUT = aiohttp.ClientTimeout(total=30)
+
 
 class FuelWatchAPI:
-    """Wrapper around fuelwatcher that returns normalized summary data."""
+    """Client that queries the FuelWatch RSS feed and returns normalized summary data.
+
+    Queries the feed directly rather than via the fuelwatcher library: the
+    library validates suburbs against a hardcoded list that goes stale as new
+    suburbs gain stations (e.g. Casuarina, Tapping), while FuelWatch itself
+    accepts any suburb and simply returns an empty feed for unknown ones.
+    """
 
     def __init__(self, hass: HomeAssistant) -> None:
         self.hass = hass
 
-    def _fetch_sync(self, location: str, fuel_type: str, day: str, surrounding: bool):
-        """Run the blocking FuelWatch request synchronously."""
-        product_id = FUEL_TYPE_OPTIONS[fuel_type]
-        client = FuelWatch()
-        client.query(
-            suburb=location, product=product_id, day=day, surrounding=surrounding
-        )
-        return client.xml
+    async def _fetch_day(
+        self, location: str, fuel_type: str, day: str, surrounding: bool
+    ) -> list[dict[str, str | None]]:
+        """Fetch and parse one day's prices, cheapest first."""
+        params = {
+            "Product": FUEL_TYPE_OPTIONS[fuel_type],
+            "Suburb": location,
+            "Surrounding": "yes" if surrounding else "no",
+            "Day": day,
+        }
+        session = async_get_clientsession(self.hass)
+        async with session.get(
+            RSS_URL,
+            params=params,
+            headers={"User-Agent": USER_AGENT},
+            timeout=REQUEST_TIMEOUT,
+        ) as response:
+            response.raise_for_status()
+            raw = await response.read()
+
+        dom = ElementTree.fromstring(raw)
+        rows = [
+            {child.tag: child.text for child in item}
+            for item in dom.findall("channel/item")
+        ]
+
+        def price_key(row: dict) -> float:
+            try:
+                return float(row.get("price"))
+            except (TypeError, ValueError):
+                return float("inf")
+
+        rows.sort(key=price_key)
+        return rows
 
     async def fetch(
         self,
@@ -37,11 +77,9 @@ class FuelWatchAPI:
         """Fetch FuelWatch data for both today and tomorrow, return summary statistics."""
         # Fetch both today and tomorrow data
         try:
-            today_data = await self.hass.async_add_executor_job(
-                self._fetch_sync, location, fuel_type, "today", surrounding
-            )
-            tomorrow_data = await self.hass.async_add_executor_job(
-                self._fetch_sync, location, fuel_type, "tomorrow", surrounding
+            today_data = await self._fetch_day(location, fuel_type, "today", surrounding)
+            tomorrow_data = await self._fetch_day(
+                location, fuel_type, "tomorrow", surrounding
             )
         except Exception as err:
             _LOGGER.warning(

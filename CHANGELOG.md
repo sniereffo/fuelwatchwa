@@ -155,6 +155,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   locally, so the integration shows its own icon in Settings → Devices &
   Services without a home-assistant/brands entry.
 
+## [0.7.0] - 2026-08-15
+
+### Fixed
+- **Suburbs missing from the fuelwatcher library's whitelist (e.g. Tapping)
+  failing with "No FuelWatch data returned"** — the integration now queries
+  the FuelWatch RSS feed directly instead of via the `fuelwatcher` library.
+  The library validates suburbs against a hardcoded list that goes stale as
+  new suburbs gain stations (0.2.2 lacked Casuarina, 1.0.0 lacks Tapping);
+  FuelWatch itself accepts any suburb and returns an empty feed for unknown
+  ones, so no whitelist is needed.
+
+### Changed
+- No more runtime pip dependencies (`requirements` is now empty).
+- Requests now use Home Assistant's shared aiohttp session (fully async,
+  no executor threads).
+
 ## [Unreleased]
 
 ### Planned
