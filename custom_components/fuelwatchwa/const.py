@@ -9,8 +9,10 @@ PLATFORMS = ["sensor"]
 CONF_LOCATION = "location"
 CONF_DAY = "day"
 CONF_FUEL_TYPES = "fuel_types"
+CONF_SURROUNDING = "surrounding"
 
 DEFAULT_DAY = "today"
+DEFAULT_SURROUNDING = True
 DEFAULT_FUEL_TYPES = ["ulp_91"]
 DEFAULT_SCAN_INTERVAL = timedelta(minutes=30)
 
@@ -72,6 +74,7 @@ COMMON_SUBURBS = [
     "Byford",
     "Serpentine",
     "Kwinana",
+    "Casuarina",
     "Secret Harbour",
     "Gosnells",
     "Thornlie",
