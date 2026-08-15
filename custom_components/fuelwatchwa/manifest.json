@@ -9,5 +9,5 @@
   "codeowners": ["@drosair"],
   "requirements": [],
   "iot_class": "cloud_polling",
-  "version": "0.7.0"
+  "version": "0.7.1"
 }

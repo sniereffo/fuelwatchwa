@@ -171,7 +171,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Requests now use Home Assistant's shared aiohttp session (fully async,
   no executor threads).
 
-## [Unreleased]
+## [0.7.1] - 2026-08-15
 
 ### Fixed
 - Price sensors declared `AUD/L` while FuelWatch publishes prices in cents
@@ -179,6 +179,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   in the CSV-import statistics metadata (#1). Values are unchanged; after
   updating, accept the one-time unit correction for existing long-term
   statistics in Developer Tools → Statistics.
+
+## [Unreleased]
 
 ### Planned
 - Location intelligence and GPS integration
