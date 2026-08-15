@@ -1,8 +1,8 @@
 {
   "domain": "fuelwatchwa",
   "name": "FuelWatch WA",
-  "documentation": "https://github.com/drosair/fuelwatchwa",
-  "issue_tracker": "https://github.com/drosair/fuelwatchwa/issues",
+  "documentation": "https://github.com/sniereffo/fuelwatchwa",
+  "issue_tracker": "https://github.com/sniereffo/fuelwatchwa/issues",
   "integration_type": "hub",
   "config_flow": true,
   "dependencies": [],
